@@ -13,7 +13,7 @@ The currently used language is Java, JDK 1.8. The project is mainly based on Jav
 4. Fully blank (white or an adjustable paper-color) horizontal lines become eligible for deletion by the user.
 _This aids to create vertical space._
 5. Manual retouching
-   1. Signs (dynamics/playing styles) can be moved/deleted (step 4. will be repeated).
+   1. Music signs can be moved/deleted (step 4. is repeated automatically).
    2. Repetition signs can be added (and redundant music bars deleted).
    3. Text can be randomly placed (to [re]move bulky titles).
 6. Finalization
