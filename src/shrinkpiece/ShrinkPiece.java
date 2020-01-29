@@ -318,9 +318,9 @@ public class ShrinkPiece extends Application {
                 shrinkPane.getWidth(),shrinkPane.getHeight());
         shrinkPaneTooltipInteraction.setFill(Color.TRANSPARENT);
         shrinkPaneTooltipInteraction.setStroke(Color.TRANSPARENT);
-        SPTooltip shrinkPaneTooltip = new SPTooltip("Deze knip- en plakhulp vereenvoudigt" +
-                "het inkrimpen\nvan muziekstukken tot leesbare marsen.\n\nBestanden kunnen niet ingelezen worden,\n"+
-                "maar schermafdrukken (vanuit de PrtSc-toets) kunnen geplakt worden.\n\nBij twijfel, gebruik ENTER.");
+        SPTooltip shrinkPaneTooltip = new SPTooltip("Compact music sheets into marching band format.\n" +
+                                                    "Import clipboard-images (from 'PrtSc' key) with the arrow\n" +
+                                                    "or 'ENTER'. To proceed, press 'ENTER'."
         shrinkPaneTooltip.setHideOnEscape(true);
         Tooltip.install(shrinkPaneTooltipInteraction, shrinkPaneTooltip);
         
@@ -347,7 +347,7 @@ public class ShrinkPiece extends Application {
              { if(pPr != null && pPr.isShowing()) pPr.close(); }
         );
         stageShrinker.setMaximized(true);
-        stageShrinker.setTitle("Marsformaat in twee stappen");        
+        stageShrinker.setTitle("Shrink Piece");        
         stageShrinker.setScene(shrinkScene);
     }
     
@@ -657,7 +657,7 @@ public class ShrinkPiece extends Application {
     private void initShrinkContextMenu(){
         menuButton.setVisible(false);
         shrinkMenu = new ContextMenu();
-        deleteSel = new MenuItem("Verwijder markering");
+        deleteSel = new MenuItem("Delete marking");
         deleteSel.setOnAction((ac)->{
             String sName;
             
@@ -673,7 +673,7 @@ public class ShrinkPiece extends Application {
                     break;
             }            
         });        
-        clearAccordingToArea = new MenuItem("Verwijder het gemarkeerde");
+        clearAccordingToArea = new MenuItem("Delete the marked area");
         clearAccordingToArea.setOnAction((ac)->{
             deleteMarkedArea();
         });
@@ -1067,7 +1067,7 @@ public class ShrinkPiece extends Application {
             if(titleStart < 0.0) titleStart = 0.0;
             applicationTitle.setTranslateY(titleStart);
             titleBottom = titleStart + 50.0;
-            applicationTitle.setTranslateX(stageShrinker.getWidth()*0.5 - 195.0);
+            applicationTitle.setTranslateX(stageShrinker.getWidth()*0.5 - 85.0);
         }
         if(copyrightDisplay != null){
             if(stageShrinker.getWidth() < WIDTH_COP){
@@ -1089,13 +1089,13 @@ public class ShrinkPiece extends Application {
             
         }
         if(hideSplashButton != null){
-            hideSplashButton.setTranslateX(stageShrinker.getWidth()*0.5 - 100.0);
+            hideSplashButton.setTranslateX(stageShrinker.getWidth()*0.5 - 45.0);
             hideSplashButton.setTranslateY(dispBottom + 15.0);
         }
     }
     
     private void initSplashPane(){   
-        applicationTitle.setText("Marsformaat in twee stappen...");
+        applicationTitle.setText("Shrink Piece...");
         applicationTitle.setFont(Font.font("Cooper Black", 24.0));
         
         copyrightDisplay.getStyleClass().add("colThr"); //To comply with ScrollPane CSS-Styles.  
@@ -1119,7 +1119,7 @@ public class ShrinkPiece extends Application {
         copyrightDisplay.setText(licContent.toString());
         moveCopyrightViewer();
         
-        hideSplashButton.setText("I accept/Ik accepteer deze overeenkomst");
+        hideSplashButton.setText("I accept this license");
         hideSplashButton.setOnAction((press) -> {
                 shrinkScene.setRoot(shrinkPane);
                 splashPane = null;
@@ -1206,9 +1206,9 @@ public class ShrinkPiece extends Application {
 
         importArr.getChildren().addAll(smallArrow, bigArrow, importArrCanvC, importArrCanvD, importArrCanvE, importArrCanvF);
         
-        schermafdrukHulp.setText("Het klembord (Ctrl + V) bevatte geen afbeeldingen.\n" +
-                "(De PrtSc-toets op het toetsenbord maakt een schermafdruk\n" + 
-                "en plaatst deze automatisch op het klembord [Ctrl + C].)");
+        schermafdrukHulp.setText("No images found on your clipboard (Ctrl + V).\n" + 
+                                 "You can use the 'PrtSc' key to add your screen to\n" +
+                                 "your clipboard.");
         schermafdrukHulp.setFont(tooltipFont);
         schermafdrukHulp.setVisible(false);
         schermafdrukHulp.setTranslateX(sPiecePane.getBoundsInParent().getMinX() + 50.0);
@@ -1249,7 +1249,7 @@ public class ShrinkPiece extends Application {
             importArr.setTranslateX(importArr.getTranslateX() - xOffDSArr);
             importArr.setTranslateY(importArr.getTranslateY() - yOffDSArr);
         });
-        SPTooltip importGuide = new SPTooltip("(Ctrl + V). Plakt schermafdrukken (PrtSc).");
+        SPTooltip importGuide = new SPTooltip("Imports (Ctrl + V) clipboard images (generated by 'PrtSc').");
         Tooltip.install(importArr, importGuide);
         //End of imported canvii and functions.    
     }
@@ -1282,7 +1282,7 @@ public class ShrinkPiece extends Application {
     
     private void initClearButton(){          
         clearButton.setDisable(true);
-        clearButton.setText("Verwijder lege ruimtes");
+        clearButton.setText("Remove the blanks");
         clearButton.setPrefSize(140.0, 25.0);
         clearButton.setTranslateX(sPiecePane.getTranslateX() + 
                 sPiecePane.getPrefWidth() -
@@ -2211,7 +2211,7 @@ public class ShrinkPiece extends Application {
     }
     
     private void initTextButton(){
-        tFLabel.setText("Invoegen...");
+        tFLabel.setText("Insert...");
         tFLabel.setEditable(false);
         tFLabel.setPrefWidth(100.0);
         tFLabel.setPrefHeight(25.0);
@@ -2726,9 +2726,9 @@ public class ShrinkPiece extends Application {
         papColBox.setTranslateX(clearButton.getBoundsInParent().getMinX() - 160.0);
         papColBox.setTranslateY(sPiecePane.getBoundsInParent().getMinY() -
                 papColBox.getBoundsInLocal().getHeight() - 5.0);
-        papColBox.setLabelText("Net donkerder dan papier.");
-        SPTooltip pColBoxDescr = new SPTooltip("Lichtere of even lichte partituuronderdelen\n" +
-                "worden gemarkeerd voor verwijdering, in de derde stap.");
+        papColBox.setLabelText("Slightly darker than paper");
+        SPTooltip pColBoxDescr = new SPTooltip("Full-width areas of at least this brightness\n" +
+                "will be marked for deletion (in the third step).");
         Tooltip.install(papColBox, pColBoxDescr); 
         
         initCol = papColBox.getColorThreshold();
